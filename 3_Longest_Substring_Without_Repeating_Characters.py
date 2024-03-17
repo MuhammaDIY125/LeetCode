@@ -1,33 +1,25 @@
-# class Solution:
-#     def lengthOfLongestSubstring(self, s: str) -> int:
-#         s = str(s)
-#         lst = []
-#         st = ""
-#         for i in s:
-#             if i not in st:
-#                 st += i
-#             else:
-#                 lst.append(st)
-#                 st = i
-#         lst.append(st)
-#         maximum = max(lst, key=lambda x: len(x))
-#         return len(maximum)
-
-
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        s = str(s)
+        if not s:
+            return 0
         lst = []
-        st = ""
-        for i in s:
-            if i not in st:
-                st += i
-            else:
+        s = set(s.split())
+        if s == set():
+            return 1
+        if len(s) == 1:
+            maximum = 0
+        else:
+            maximum = 1
+        for q in s:
+            for i in range(len(q)):
+                st = ""
+                for j in q[i:]:
+                    if j not in st:
+                        st += j
+                    else:
+                        lst.append(st)
+                        st = j
                 lst.append(st)
-                st = i
-        lst.append(st)
-        maximum = max(lst, key=lambda x: len(x))
-        return len(maximum)
-
-s1 = Solution().lengthOfLongestSubstring("abcabcbb")
-print(s1)
+        maximum += len(max(lst, key=lambda x: len(x)))
+        return maximum
+print(Solution().lengthOfLongestSubstring(input()))
