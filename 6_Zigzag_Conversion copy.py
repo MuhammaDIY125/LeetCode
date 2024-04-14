@@ -1,47 +1,35 @@
-# # Zigzag Conversion
-# class Solution:
-#     def convert(self, s: str, numRows: int) -> str:
-#         lst = [[]] * numRows
-#         n = numRows
-
-
+# Zigzag Conversion
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        if numRows == 2:
-            toq = ""
-            juft = ""
-            for i in range(len(s)):
-                if i % 2:
-                    toq += s[i]
-                else:
-                    juft += s[i]
-            return juft + toq
-        if numRows == 1:
-            return s
-        box = "_" * len(s) + " "
-        n = numRows * 2 - 2
-        natija = s[0]
-        s = "_" + s[1:] + " "
-        
-        if len(s) - 1 > numRows:
-            for i in range(1, len(s) // n + 1):
-                natija += s[i*n]
-                s = s[:i*n] + "_" + s[i*n+1:]
-        while s != box:
-            for i in range(len(s) - 1):
-                if s[i] != "_" and (s[i-1] == "_" or s[i+1]== "_"):
-                    natija += s[i]
-                    s = s[:i] + "*" + s[i+1:]
-            s = s.replace("*", "_")
+        lst = []
+        for i in range(numRows):
+            lst.append([])
+        n = 0
+        lampochka = True
+        for i in s:
+            print(n, i)
+            lst[n].append(i)
+            if n < numRows - 1 and lampochka:
+                n += 1
+            elif n == numRows - 1:
+                n -= 1
+                lampochka = False
+            elif n > 0 and not lampochka:
+                n -= 1
+            else:
+                n += 1
+                lampochka = True
+        natija = ''
+        for i in lst:
+            natija += ''.join(i)
         return natija
-    
-
+        print(natija)
 
 
 s1 = Solution()
-s = "PAHNAPLSIIGYIR" # 1 <= s.length <= 1000
-numRows = 4 # 1 <= numRows <= 1000
-print(s1.convert(s, numRows))
+s = "PAYPALISHIRING"
+numRows = 4
+s1.convert(s, numRows)
 
 # PLIAPSYRHAIGNI
 # PINALSIGYAHRPI

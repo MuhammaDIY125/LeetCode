@@ -6,4 +6,4 @@ class Solution:
         return False
 
 s1 = Solution()
-print(s1.isMatch(97))
+print(s1.isMatch("aa", "a"))
