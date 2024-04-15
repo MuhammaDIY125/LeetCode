@@ -1,7 +1,8 @@
 class Solution:
-    def plusOne(self, digits: list[int]) -> list[int]:
-        return [int(i) for i in (str(int(''.join([str(i) for i in digits])) + 1))]
+    def addBinary(self, a: str, b: str) -> str:
+        return bin(int(a, 2) + int(b, 2))[2:]
 
 s1 = Solution()
-digits = [1,2,3]
-print(s1.plusOne(digits))
+a = "11"
+b = "1"
+print(s1.addBinary(a, b))
