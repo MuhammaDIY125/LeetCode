@@ -1,15 +1,7 @@
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        if not s:
-            return 0
-        lst = []
+    def lengthOfLongestSubstring(self, s: str):
         s = set(s.split())
-        if s == set():
-            return 1
-        if len(s) == 1:
-            maximum = 0
-        else:
-            maximum = 1
+        print(s)
         for q in s:
             for i in range(len(q)):
                 st = ""
@@ -22,4 +14,5 @@ class Solution:
                 lst.append(st)
         maximum += len(max(lst, key=lambda x: len(x)))
         return maximum
+
 print(Solution().lengthOfLongestSubstring(input()))
